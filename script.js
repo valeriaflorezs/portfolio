@@ -17,13 +17,6 @@
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
 
-  // Tarjetas que giran: en táctil se voltean con un toque; con teclado, Enter o espacio.
-  $(".flip").forEach(function (f) {
-    if (matchMedia("(hover: none)").matches) f.addEventListener("click", function () { f.classList.toggle("flipped"); });
-    f.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); f.classList.toggle("flipped"); }
-    });
-  });
 
   // Carpetas del escritorio: cada una abre una ventana (<dialog>).
   function openWin(id) {
@@ -95,7 +88,7 @@
 
   // Aparición al hacer scroll, escalonada dentro de cada grupo.
   var groups = [".hub-list > *", ".chips > *", ".tl > li", ".plain > li", ".about > *", ".sec-head",
-                ".flip-grid > *", ".proj-grid > *", ".orbit-wrap > *", ".pillars > *", ".folders > *", ".about-wrap > *"];
+                ".skills-board > *", ".tiles > *", ".proj-grid > *", ".orbit-wrap > *", ".pillars > *", ".folders > *", ".about-wrap > *"];
   var targets = [];
   groups.forEach(function (sel) {
     var seen = new Map();
