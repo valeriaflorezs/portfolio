@@ -369,10 +369,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; a
 
 .sub-title { margin: 28px 0 14px; }
 section > .sub-title:first-of-type { margin-top: 0; }
-section > .tl.cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 212px), 1fr)); }
+section > .tl.cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); }
 .tl .chips { margin-top: 12px; }
 .tl .chip { white-space: normal; }
-.folder-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; padding: 6px 14px 6px 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--fg); font: inherit; font-size: .85em; white-space: nowrap; cursor: pointer; position: relative; z-index: 1; transition: border-color .2s, background .2s; }
+.folder-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; padding: 6px 16px 6px 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--fg); font: inherit; font-size: .9em; cursor: pointer; position: relative; z-index: 1; transition: border-color .2s, background .2s; }
 .folder-link:hover { border-color: var(--accent); background: color-mix(in srgb, var(--lav) 14%, var(--bg)); }
 .folder-link img { width: 34px; height: 34px; }
-.cert-uni { border-left-color: var(--accent); }
+.cert-uni { border-left-color: var(--accent); grid-column: 1 / -1; }
+.cert-uni p { max-width: 70ch; }
