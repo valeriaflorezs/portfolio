@@ -7,6 +7,7 @@
   --sans: "Inter Tight", system-ui, sans-serif;
   --serif: "Instrument Serif", Georgia, serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
+  --gutter: clamp(16px, 4vw, 64px);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -21,12 +22,12 @@
 html { scroll-behavior: smooth; }
 body {
   background: var(--bg); color: var(--fg);
-  font-family: var(--sans); font-size: 17px; line-height: 1.6;
+  font-family: var(--sans); font-size: clamp(16px, .35vw + 14.5px, 20px); line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; text-decoration: none; }
 em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-.wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+.wrap { width: 100%; max-width: 1560px; margin: 0 auto; padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right)); }
 .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 
 /* nav */
@@ -45,7 +46,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 /* hero */
 .hero { padding: 72px 0 40px; }
 .hero h1 {
-  font-size: clamp(44px, 11vw, 96px); line-height: .98; letter-spacing: -.04em; font-weight: 500;
+  font-size: clamp(44px, 9.5vw, 168px); line-height: .98; letter-spacing: -.04em; font-weight: 500;
 }
 .hero h1 .ghost { color: color-mix(in srgb, var(--fg) 24%, var(--bg)); }
 .hero .role { margin-top: 20px; font-size: clamp(18px, 3vw, 22px); max-width: 640px; }
@@ -143,3 +144,64 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   .hero h1 .ghost { transition: color .4s; }
   .hero h1:hover .ghost { color: var(--fg); }
 }
+
+/* ---------- layout fluido: aprovecha el ancho en cada dispositivo ---------- */
+.top { display: block; }
+.hero .role { max-width: 34ch; font-size: clamp(18px, 1.2vw + 12px, 30px); }
+.about p, .tl p, .tl ul { max-width: 68ch; }
+.tl p, .tl ul { font-size: 1em; }
+.hub-link { min-height: 56px; }
+
+/* tablet: enlaces en 2 columnas */
+@media (min-width: 640px) {
+  .hub-list { grid-template-columns: repeat(2, 1fr); }
+  .hub-link.primary { grid-column: 1 / -1; }
+}
+
+/* laptop+: héroe a la izquierda, enlaces a la derecha */
+@media (min-width: 1000px) {
+  .top { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 96px); align-items: end; padding: clamp(40px, 7vh, 96px) 0 16px; }
+  .hero { padding: 0; }
+  .hub { padding: 0; }
+  .hub-list { grid-template-columns: 1fr; }
+  .hub-link.primary { grid-column: auto; }
+
+  /* secciones: título fijo a la izquierda, contenido a la derecha */
+  section { display: grid; grid-template-columns: minmax(200px, 1fr) minmax(0, 3.2fr); column-gap: clamp(32px, 5vw, 96px); align-items: start; padding-top: clamp(72px, 10vh, 140px); }
+  section > .sec-head { grid-column: 1; grid-row: 1 / span 20; position: sticky; top: 88px; flex-direction: column; gap: 6px; border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+  section > *:not(.sec-head) { grid-column: 2; }
+  .skill-group + .skill-group { margin-top: 32px; }
+}
+
+/* pantallas muy anchas: tipografía y contenido más generosos */
+@media (min-width: 1600px) {
+  .chip { font-size: 15px; padding: 8px 16px; }
+  .hub-link { padding: 22px 28px; }
+}
+
+/* móviles pequeños */
+@media (max-width: 420px) {
+  .nav ul { gap: 14px; }
+  .brand { display: none; }
+  .nav .wrap { justify-content: space-between; }
+  .chip { font-size: 12px; }
+  .tl li { padding-left: 20px; }
+  .contact-mail { word-break: break-word; }
+}
+
+/* táctil: objetivos de toque cómodos */
+@media (pointer: coarse) {
+  .theme-btn { width: 44px; height: 44px; }
+  .nav ul a { padding: 10px 2px; display: inline-block; }
+}
+
+/* links.html: tarjeta fluida */
+.bio-page { min-height: 100dvh; padding-top: max(56px, env(safe-area-inset-top)); padding-bottom: max(40px, env(safe-area-inset-bottom)); }
+.bio-page .card { max-width: clamp(320px, 90vw, 640px); }
+@media (min-width: 900px) {
+  .bio-page .card { max-width: 760px; }
+  .bio-page .hub-list { grid-template-columns: repeat(2, 1fr); }
+  .bio-page .hub-link.primary { grid-column: 1 / -1; }
+}
+.avatar { width: clamp(96px, 14vw, 140px); height: clamp(96px, 14vw, 140px); }
+footer { padding-bottom: max(48px, env(safe-area-inset-bottom)); }
