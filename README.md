@@ -14,3 +14,6 @@ Settings → Pages → Deploy from a branch → `main` / root. El sitio queda en
 
 ## Local
 `python3 -m http.server 8000` y abre http://localhost:8000
+
+## Caché
+Los enlaces a `styles.css` y `script.js` llevan `?v=N`. Al cambiar esos archivos, sube el número en `index.html` y `links.html` para que los navegadores descarguen la versión nueva.
