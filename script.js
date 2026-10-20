@@ -1,28 +1,31 @@
-// Tema claro/oscuro: respeta la preferencia del sistema y recuerda la elección.
 (function () {
   var root = document.documentElement;
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+  // Tema claro/oscuro: respeta la preferencia del sistema y recuerda la elección.
   var btn = document.getElementById("theme");
   try {
     var saved = localStorage.getItem("theme");
     if (saved) root.setAttribute("data-theme", saved);
   } catch (e) {}
-  if (!btn) return;
-  btn.addEventListener("click", function () {
+  if (btn) btn.addEventListener("click", function () {
     var dark = root.getAttribute("data-theme") === "dark" ||
       (!root.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
     var next = dark ? "light" : "dark";
     root.setAttribute("data-theme", next);
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
-})();
 
-// ---------- animaciones ----------
-(function () {
-  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var root = document.documentElement;
-  var $ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  // Tarjetas que giran: en táctil se voltean con un toque; con teclado, Enter o espacio.
+  $(".flip").forEach(function (f) {
+    if (matchMedia("(hover: none)").matches) f.addEventListener("click", function () { f.classList.toggle("flipped"); });
+    f.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); f.classList.toggle("flipped"); }
+    });
+  });
 
-  // Texto que se escribe solo (también en reduced-motion, pero sin animar: muestra la primera palabra).
+  // Texto que se escribe solo (con reduced-motion muestra la primera frase sin animar).
   var typer = document.getElementById("typer");
   if (typer) {
     var words = ["dashboards en Power BI", "modelos en DAX", "análisis en Python y R", "contenido que explica datos"];
@@ -43,7 +46,7 @@
   if (reduce) return;
   root.classList.add("js");
 
-  // Nombre letra por letra
+  // Nombre letra por letra (la palabra con color entra completa).
   $(".hero h1").forEach(function (h) {
     var i = 0;
     (function split(node) {
@@ -64,8 +67,9 @@
     })(h);
   });
 
-  // Aparición al hacer scroll, con escalonado dentro de cada grupo
-  var groups = [".hub-list > *", ".chips > *", ".tl > li", ".plain > li", ".about > *", ".sec-head"];
+  // Aparición al hacer scroll, escalonada dentro de cada grupo.
+  var groups = [".hub-list > *", ".chips > *", ".tl > li", ".plain > li", ".about > *", ".sec-head",
+                ".flip-grid > *", ".proj-grid > *", ".orbit-wrap > *", ".pillars > *"];
   var targets = [];
   groups.forEach(function (sel) {
     var seen = new Map();
@@ -81,10 +85,9 @@
   }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
   targets.forEach(function (el) { io.observe(el); });
 
-  // Barra de progreso y línea de tiempo que se dibuja con el scroll
+  // Barra de progreso de lectura.
   var bar = document.createElement("div"); bar.className = "progress";
   var nav = document.querySelector(".nav"); if (nav) nav.appendChild(bar);
-  var tl = document.querySelector(".tl");
   var raf = 0;
   function onScroll() {
     if (raf) return;
@@ -92,26 +95,28 @@
       raf = 0;
       var max = root.scrollHeight - innerHeight;
       bar.style.transform = "scaleX(" + (max > 0 ? scrollY / max : 0) + ")";
-      if (tl) {
-        var r = tl.getBoundingClientRect();
-        var p = (innerHeight * .75 - r.top) / r.height;
-        tl.style.setProperty("--tl", Math.max(0, Math.min(1, p)));
-      }
     });
   }
   addEventListener("scroll", onScroll, { passive: true });
   addEventListener("resize", onScroll);
   onScroll();
 
-  // Inclinación 3D suave en los enlaces (solo con puntero fino)
+  // Inclinación 3D y brillo que sigue al cursor (solo con puntero fino).
   if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    $(".hub-link").forEach(function (a) {
-      a.addEventListener("pointermove", function (e) {
-        var r = a.getBoundingClientRect();
+    $(".hub-link, .tilt").forEach(function (el) {
+      var amp = el.classList.contains("hub-link") ? 6 : 4;
+      el.addEventListener("pointermove", function (e) {
+        var r = el.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-        a.style.transform = "perspective(700px) rotateX(" + (-y * 6) + "deg) rotateY(" + (x * 6) + "deg) translateY(-1px)";
+        el.style.transition = "transform .12s ease-out";
+        el.style.transform = "perspective(800px) rotateX(" + (-y * amp) + "deg) rotateY(" + (x * amp) + "deg) translateY(-2px)";
+        el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        el.style.setProperty("--my", (e.clientY - r.top) + "px");
       });
-      a.addEventListener("pointerleave", function () { a.style.transform = ""; });
+      el.addEventListener("pointerleave", function () {
+        el.style.transition = "transform .5s cubic-bezier(.2,.8,.2,1)";
+        el.style.transform = "";
+      });
     });
   }
 })();

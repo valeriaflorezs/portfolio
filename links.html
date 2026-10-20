@@ -5,20 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Valeria Sarmiento — Enlaces</title>
 <meta name="description" content="Todos los enlaces de Valeria Sarmiento en un solo lugar.">
+<meta name="theme-color" content="#2D235B">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main class="bio-page">
+<main class="bio-page banner">
+  <div class="stars" aria-hidden="true">
+    <span style="left:8%;top:12%;--s:14px;--t:3.2s">★</span>
+    <span style="left:84%;top:9%;--s:12px;--t:4s;animation-delay:.6s">✦</span>
+    <span style="left:18%;top:46%;--s:10px;--t:3.6s;animation-delay:1.2s">✦</span>
+    <span style="left:90%;top:42%;--s:16px;--t:4.4s;animation-delay:.3s">★</span>
+    <span style="left:10%;top:82%;--s:12px;--t:3.8s;animation-delay:.9s">★</span>
+    <span style="left:78%;top:88%;--s:11px;--t:4.2s;animation-delay:1.5s">✦</span>
+  </div>
   <div class="card">
-    <img class="avatar" src="avatar.png" alt="" onerror="this.style.display='none'">
+    <!-- Para tu foto guarda assets/valeria.jpg; si no existe se ve el monograma. -->
+    <div class="avatar"><span>VS</span><img src="assets/valeria.jpg" alt="Valeria Sarmiento" onerror="this.remove()"></div>
     <h1>Valeria Sarmiento</h1>
     <p class="tagline">Data Analyst · Power BI · Python · R · SQL</p>
     <div class="hub-list">
       <a class="hub-link primary" href="index.html">
-        <div><strong>Mi portafolio completo</strong><span class="sub">Experiencia, skills y más</span></div><span class="arrow">→</span>
+        <div><strong>Mi portafolio completo</strong><span class="sub">Experiencia, skills y proyectos</span></div><span class="arrow">→</span>
       </a>
       <a class="hub-link" href="https://www.linkedin.com/in/valeriaflorezs" target="_blank" rel="noopener">
         <div><strong>Conéctemos en LinkedIn</strong></div><span class="arrow">↗</span>
@@ -36,7 +46,7 @@
         <div><strong>Correo</strong><span class="sub">vflorez.contacto@gmail.com</span></div><span class="arrow">→</span>
       </a>
     </div>
-    <p class="more mono">© 2026 Valeria Sarmiento</p>
+    <p class="more mono">★ © 2026 Valeria Sarmiento ★</p>
   </div>
 </main>
 <script src="script.js"></script>
