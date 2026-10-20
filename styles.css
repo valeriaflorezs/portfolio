@@ -365,3 +365,6 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; a
 .sing-hero .node span { font-size: 10.5px; }
 .about-photo img { aspect-ratio: 4 / 5; object-position: 50% 78%; }
 @media (max-width: 520px) { .win-title .pre { display: none; } }
+
+.certs-title { margin-top: 36px; }
+.certs .chip { white-space: normal; }
