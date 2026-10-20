@@ -366,5 +366,13 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; a
 .about-photo img { aspect-ratio: 4 / 5; object-position: 50% 78%; }
 @media (max-width: 520px) { .win-title .pre { display: none; } }
 
-.certs-title { margin-top: 36px; }
-.certs .chip { white-space: normal; }
+
+.sub-title { margin: 28px 0 14px; }
+section > .sub-title:first-of-type { margin-top: 0; }
+section > .tl.cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 212px), 1fr)); }
+.tl .chips { margin-top: 12px; }
+.tl .chip { white-space: normal; }
+.folder-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; padding: 6px 14px 6px 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--fg); font: inherit; font-size: .85em; white-space: nowrap; cursor: pointer; position: relative; z-index: 1; transition: border-color .2s, background .2s; }
+.folder-link:hover { border-color: var(--accent); background: color-mix(in srgb, var(--lav) 14%, var(--bg)); }
+.folder-link img { width: 34px; height: 34px; }
+.cert-uni { border-left-color: var(--accent); }
