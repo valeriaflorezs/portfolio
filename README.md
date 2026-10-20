@@ -5,8 +5,9 @@ Sitio estático (HTML + CSS + JS, sin build) que combina portafolio y "Linktree"
 - `index.html`: portafolio completo; los enlaces están en el banner (**Todos mis enlaces**).
 - `links.html`: página mínima tipo Linktree para poner en la bio de redes.
 - Para agregar un enlace, duplica un bloque `<a class="hub-link">` en ambos archivos.
-- Foto: guarda una imagen cuadrada como `assets/valeria.jpg`. Si no existe, se muestra el monograma "VS".
-- Proyectos: las tarjetas de la sección *Proyectos destacados* están en `index.html`; cada una tiene su ilustración animada en SVG, que puedes reemplazar por una captura propia.
+- Imágenes en `assets/`: `avatar.webp` (tarjeta colgante y `links.html`), `valeria.webp` (Sobre mí), `singularity.webp` (ventana de Singularity), `favicon.png` e `icons/` (carpetas). Si falta el avatar, se muestra el monograma "VS".
+- Escritorio: cada carpeta (`data-open="win-…"`) abre un `<dialog id="win-…">` al final de `index.html`; también se abren con `#biosteel`, `#singularity`, `#uninorte`, `#proyectos` y `#datavisuallab`.
+- Proyectos: las tarjetas están dentro de la ventana *Proyectos* de `index.html`; cada una tiene su ilustración animada en SVG, que puedes reemplazar por una captura propia.
 - Las animaciones respetan `prefers-reduced-motion`.
 
 ## Publicar en GitHub Pages
