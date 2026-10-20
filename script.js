@@ -15,3 +15,103 @@
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
 })();
+
+// ---------- animaciones ----------
+(function () {
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var root = document.documentElement;
+  var $ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+  // Texto que se escribe solo (también en reduced-motion, pero sin animar: muestra la primera palabra).
+  var typer = document.getElementById("typer");
+  if (typer) {
+    var words = ["dashboards en Power BI", "modelos en DAX", "análisis en Python y R", "contenido que explica datos"];
+    if (reduce) { typer.textContent = words[0]; }
+    else {
+      var w = 0, c = 0, del = false;
+      (function tick() {
+        var word = words[w];
+        c += del ? -1 : 1;
+        typer.textContent = word.slice(0, c);
+        var wait = del ? 28 : 65;
+        if (!del && c === word.length) { del = true; wait = 1600; }
+        else if (del && c === 0) { del = false; w = (w + 1) % words.length; wait = 350; }
+        setTimeout(tick, wait);
+      })();
+    }
+  }
+  if (reduce) return;
+  root.classList.add("js");
+
+  // Nombre letra por letra
+  $(".hero h1").forEach(function (h) {
+    var i = 0;
+    (function split(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var f = document.createDocumentFragment();
+          n.textContent.split("").forEach(function (ch) {
+            var s = document.createElement("span");
+            s.className = "ch"; s.style.setProperty("--i", i++); s.textContent = ch;
+            f.appendChild(s);
+          });
+          node.replaceChild(f, n);
+        } else if (n.nodeType === 1 && n.tagName !== "BR") {
+          if (n.classList.contains("ghost")) { n.classList.add("ch"); n.style.setProperty("--i", i); i += 9; }
+          else split(n);
+        }
+      });
+    })(h);
+  });
+
+  // Aparición al hacer scroll, con escalonado dentro de cada grupo
+  var groups = [".hub-list > *", ".chips > *", ".tl > li", ".plain > li", ".about > *", ".sec-head"];
+  var targets = [];
+  groups.forEach(function (sel) {
+    var seen = new Map();
+    $(sel).forEach(function (el) {
+      var p = el.parentNode, k = seen.get(p) || 0;
+      seen.set(p, k + 1);
+      el.classList.add("reveal"); el.style.setProperty("--d", Math.min(k, 8));
+      targets.push(el);
+    });
+  });
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
+  targets.forEach(function (el) { io.observe(el); });
+
+  // Barra de progreso y línea de tiempo que se dibuja con el scroll
+  var bar = document.createElement("div"); bar.className = "progress";
+  var nav = document.querySelector(".nav"); if (nav) nav.appendChild(bar);
+  var tl = document.querySelector(".tl");
+  var raf = 0;
+  function onScroll() {
+    if (raf) return;
+    raf = requestAnimationFrame(function () {
+      raf = 0;
+      var max = root.scrollHeight - innerHeight;
+      bar.style.transform = "scaleX(" + (max > 0 ? scrollY / max : 0) + ")";
+      if (tl) {
+        var r = tl.getBoundingClientRect();
+        var p = (innerHeight * .75 - r.top) / r.height;
+        tl.style.setProperty("--tl", Math.max(0, Math.min(1, p)));
+      }
+    });
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+  onScroll();
+
+  // Inclinación 3D suave en los enlaces (solo con puntero fino)
+  if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    $(".hub-link").forEach(function (a) {
+      a.addEventListener("pointermove", function (e) {
+        var r = a.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        a.style.transform = "perspective(700px) rotateX(" + (-y * 6) + "deg) rotateY(" + (x * 6) + "deg) translateY(-1px)";
+      });
+      a.addEventListener("pointerleave", function () { a.style.transform = ""; });
+    });
+  }
+})();
