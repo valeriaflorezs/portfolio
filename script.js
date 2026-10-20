@@ -25,6 +25,32 @@
     });
   });
 
+  // Carpetas del escritorio: cada una abre una ventana (<dialog>).
+  function openWin(id) {
+    var d = document.getElementById(id);
+    if (!d || d.open) return;
+    if (d.showModal) d.showModal(); else d.setAttribute("open", "");
+    root.classList.add("modal-open");
+    var body = d.querySelector(".win-body"); if (body) body.scrollTop = 0;
+    setTimeout(function () { $(".proj", d).forEach(function (p) { p.classList.add("in"); }); }, 120);
+    try { history.replaceState(null, "", "#" + id.replace("win-", "")); } catch (e) {}
+  }
+  $("[data-open]").forEach(function (b) { b.addEventListener("click", function () { openWin(b.getAttribute("data-open")); }); });
+  $("dialog.win").forEach(function (d) {
+    d.addEventListener("click", function (e) { if (e.target === d) d.close(); });
+    var x = d.querySelector(".win-close"); if (x) x.addEventListener("click", function () { d.close(); });
+    d.addEventListener("close", function () {
+      root.classList.remove("modal-open");
+      try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    });
+  });
+  function fromHash() {
+    var h = location.hash.slice(1);
+    if (h && document.getElementById("win-" + h)) openWin("win-" + h);
+  }
+  addEventListener("hashchange", fromHash);
+  setTimeout(fromHash, 300);
+
   // Texto que se escribe solo (con reduced-motion muestra la primera frase sin animar).
   var typer = document.getElementById("typer");
   if (typer) {
@@ -69,11 +95,12 @@
 
   // Aparición al hacer scroll, escalonada dentro de cada grupo.
   var groups = [".hub-list > *", ".chips > *", ".tl > li", ".plain > li", ".about > *", ".sec-head",
-                ".flip-grid > *", ".proj-grid > *", ".orbit-wrap > *", ".pillars > *"];
+                ".flip-grid > *", ".proj-grid > *", ".orbit-wrap > *", ".pillars > *", ".folders > *", ".about-wrap > *"];
   var targets = [];
   groups.forEach(function (sel) {
     var seen = new Map();
     $(sel).forEach(function (el) {
+      if (el.closest("dialog")) return;
       var p = el.parentNode, k = seen.get(p) || 0;
       seen.set(p, k + 1);
       el.classList.add("reveal"); el.style.setProperty("--d", Math.min(k, 8));

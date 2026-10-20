@@ -6,13 +6,14 @@
 <title>Valeria Sarmiento — Data Analyst</title>
 <meta name="description" content="Data Analyst y creadora de contenido tech. Power BI, Python, R, SQL. Presidenta de Singularity, estudiante de Ciencia de Datos en Uninorte.">
 <meta name="theme-color" content="#2D235B">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <meta property="og:title" content="Valeria Sarmiento — Data Analyst">
 <meta property="og:description" content="Convierto datos dispersos en modelos de Business Intelligence y los explico. Todos mis enlaces en un solo lugar.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -23,9 +24,7 @@
       <li><a href="#enlaces">Enlaces</a></li>
       <li><a href="#sobre-mi">Sobre mí</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#comunidad">Comunidad</a></li>
-      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#escritorio">Carpetas</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <button id="theme" class="theme-btn" aria-label="Cambiar tema">◐</button>
@@ -80,12 +79,12 @@
           </div>
         </div>
 
-        <!-- Tarjeta colgante. Para tu foto guarda assets/valeria.jpg (cuadrada); si no existe se ve el monograma. -->
+        <!-- Tarjeta colgante con tu avatar (assets/avatar.webp); si falta, se ve el monograma. -->
         <div class="lanyard" aria-hidden="true">
           <div class="strap"></div>
           <div class="clip"></div>
           <div class="idcard">
-            <div class="photo"><span>VS</span><img src="assets/valeria.jpg" alt="" onerror="this.remove()"></div>
+            <div class="photo"><span>VS</span><img src="assets/avatar.webp" alt="" onerror="this.remove()"></div>
             <p class="id-name">Valeria Sarmiento</p>
             <p class="id-role">Data Analyst</p>
             <p class="id-org">Singularity · Uninorte</p>
@@ -109,11 +108,19 @@
 
     <section id="sobre-mi" class="about">
       <div class="sec-head"><span class="mono">01</span><h2>Sobre <em>mí</em></h2></div>
-      <p class="lead">La mayoría de los datos en las empresas existen. El problema es que nadie los entiende.</p>
-      <p>Soy estudiante de Ciencia de Datos en Uninorte y Data Analyst independiente. Mi trabajo diario es convertir datos dispersos en modelos de Business Intelligence que permiten tomar decisiones rápidas y fundamentadas.</p>
-      <p>Pero lo que me diferencia es esto: no solo analizo datos. Los explico. A través de vlogs y reels comparto el proceso real: cómo migrar reportes manuales a dashboards dinámicos en Power BI, cómo estructurar medidas en DAX sin perderte en la lógica y cómo se ve el día a día siendo estudiante y profesional de datos a la vez.</p>
-      <p>También lidero Singularity, el grupo estudiantil de Ciencia de Datos e IA de Uninorte, donde impulsamos proyectos que democratizan el conocimiento en STEM.</p>
-      <p>¿Buscas automatizar la inteligencia de negocios de tu empresa o colaborar en proyectos de contenido tech? <a class="inline-link" href="mailto:vflorez.contacto@gmail.com">Escríbeme.</a></p>
+      <div class="about-wrap">
+        <div class="about-text">
+          <p class="lead">La mayoría de los datos en las empresas existen. El problema es que nadie los entiende.</p>
+          <p>Soy estudiante de Ciencia de Datos en Uninorte y Data Analyst independiente. Mi trabajo diario es convertir datos dispersos en modelos de Business Intelligence que permiten tomar decisiones rápidas y fundamentadas.</p>
+          <p>Pero lo que me diferencia es esto: no solo analizo datos. Los explico. A través de vlogs y reels comparto el proceso real: cómo migrar reportes manuales a dashboards dinámicos en Power BI, cómo estructurar medidas en DAX sin perderte en la lógica y cómo se ve el día a día siendo estudiante y profesional de datos a la vez.</p>
+          <p>También lidero Singularity, el grupo estudiantil de Ciencia de Datos e IA de Uninorte, donde impulsamos proyectos que democratizan el conocimiento en STEM.</p>
+          <p>¿Buscas automatizar la inteligencia de negocios de tu empresa o colaborar en proyectos de contenido tech? <a class="inline-link" href="mailto:vflorez.contacto@gmail.com">Escríbeme.</a></p>
+        </div>
+        <figure class="about-photo">
+          <img src="assets/valeria.webp" alt="Valeria Sarmiento sonriendo" width="900" height="1200" loading="lazy">
+          <figcaption class="mono">Barranquilla ✦ Colombia</figcaption>
+        </figure>
+      </div>
       <div class="pillars">
         <div class="pillar"><span class="mono">01</span><h3>Data Science &amp; IA</h3><p>Tutoriales, proyectos en Python, R y SQL, y visualizaciones en Power BI.</p></div>
         <div class="pillar"><span class="mono">02</span><h3>Liderazgo y comunidad</h3><p>Women in STEM, organización estudiantil y eventos.</p></div>
@@ -138,10 +145,32 @@
       </div>
     </section>
 
-    <section id="proyectos">
-      <div class="sec-head"><span class="mono">03</span><h2>Proyectos <em>destacados</em></h2></div>
-      <div class="proj-grid">
+    <section id="escritorio">
+      <div class="sec-head"><span class="mono">03</span><h2>Mi <em>escritorio</em></h2></div>
+      <p class="hint mono">Abre una carpeta</p>
+      <div class="desk">
+        <div class="folders">
+        <button class="folder" type="button" data-open="win-proyectos" style="--n:0"><img src="assets/icons/valeriaflorezs.png" alt="" width="148" height="148"><strong>Proyectos</strong><small class="mono">GitHub · 4 proyectos</small></button>
+        <button class="folder" type="button" data-open="win-biosteel" style="--n:1"><img src="assets/icons/biosteel.png" alt="" width="148" height="148"><strong>Biosteel</strong><small class="mono">Experiencia · 2 roles</small></button>
+        <button class="folder" type="button" data-open="win-singularity" style="--n:2"><img src="assets/icons/singularity.png" alt="" width="148" height="148"><strong>Singularity</strong><small class="mono">Comunidad · 4 roles</small></button>
+        <button class="folder" type="button" data-open="win-uninorte" style="--n:3"><img src="assets/icons/uninorte.png" alt="" width="148" height="148"><strong>Uninorte</strong><small class="mono">Formación · certificaciones</small></button>
+        <button class="folder" type="button" data-open="win-datavisuallab" style="--n:4"><img src="assets/icons/datavisuallab.png" alt="" width="148" height="148"><strong>Data &amp; Visual Lab</strong><small class="mono">Mi iniciativa</small></button>
+        </div>
+      </div>
+    </section>
 
+  </div>
+</main>
+
+<dialog class="win" id="win-proyectos" aria-labelledby="t-proyectos">
+  <div class="win-bar">
+    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="win-title"><span class="pre">valeriaflorezs / </span>proyectos</span>
+    <button class="win-close" type="button" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="win-body">
+    <div class="win-head"><img src="assets/icons/valeriaflorezs.png" alt="" width="72" height="72"><div><h2 id="t-proyectos">Proyectos <em>destacados</em></h2><p class="mono">GitHub · 28 repositorios públicos</p></div></div>
+    <div class="proj-grid">
         <article class="proj tilt">
           <div class="viz" aria-hidden="true">
             <svg viewBox="0 0 320 200" role="img">
@@ -226,21 +255,58 @@
         <article class="proj tilt">
           <div class="viz" aria-hidden="true">
             <svg viewBox="0 0 320 200" role="img">
-              <path d="M30 165H300M30 165V25" stroke="#8073C3" stroke-width="1.5" fill="none"/>
-              <path class="fade" d="M30 140L80 110L130 125L180 80L230 90L290 40L290 165L30 165Z" fill="#A594F1" opacity=".28"/>
-              <path class="draw" pathLength="1" d="M30 140L80 110L130 125L180 80L230 90L290 40" stroke="#F4E8C1" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <g fill="#F4E8C1"><circle class="dot" style="--k:5" cx="80" cy="110" r="4"/><circle class="dot" style="--k:7" cx="180" cy="80" r="4"/><circle class="dot" style="--k:9" cx="290" cy="40" r="5"/></g>
+              <rect class="dot" style="--k:0" x="40" y="26" width="240" height="148" rx="12" fill="#3C2E7A" stroke="#A594F1" stroke-width="1.5"/>
+              <circle cx="58" cy="44" r="4" fill="#F4E8C1"/><circle cx="72" cy="44" r="4" fill="#A594F1"/><circle cx="86" cy="44" r="4" fill="#8073C3"/>
+              <g fill="#A594F1">
+                <rect class="dot" style="--k:1" x="58" y="66" width="120" height="8" rx="4"/>
+                <rect class="dot" style="--k:2" x="74" y="86" width="150" height="8" rx="4" fill="#F4E8C1"/>
+                <rect class="dot" style="--k:3" x="74" y="106" width="96" height="8" rx="4"/>
+                <rect class="dot" style="--k:4" x="58" y="126" width="136" height="8" rx="4"/>
+                <rect class="dot" style="--k:5" x="58" y="146" width="70" height="8" rx="4" fill="#F4E8C1"/>
+              </g>
             </svg>
           </div>
           <div class="proj-body">
-            <span class="mono">Emprendimiento · Visualización</span>
-            <h3>Data &amp; Visual Lab</h3>
-            <p>Mi iniciativa para convertir datos en soluciones visuales: dashboards académicos, análisis de encuestas, diseño de presentaciones y tutorías personalizadas para estudiantes, docentes y emprendedores.</p>
-            <div class="chips"><span class="chip">Power BI</span><span class="chip">Excel</span><span class="chip">Canva</span><span class="chip">Python</span></div>
-            <div class="proj-links"><a href="https://valeriaflorezs.github.io/DataVisualLab/" target="_blank" rel="noopener">Sitio ↗</a><a href="https://github.com/valeriaflorezs/DataVisualLab" target="_blank" rel="noopener">Repositorio ↗</a></div>
+            <span class="mono">Más proyectos</span>
+            <h3>R, estadística y algoritmos</h3>
+            <p>Modelado estadístico con R Markdown, riesgo crediticio (Give Me Some Credit), visualización de datos, teoría de grafos y estructuras de datos en Python y Java.</p>
+            <div class="chips"><span class="chip">R</span><span class="chip">Python</span><span class="chip">Java</span></div>
+            <div class="proj-links"><a href="https://github.com/valeriaflorezs?tab=repositories" target="_blank" rel="noopener">Ver los 28 repositorios ↗</a></div>
           </div>
         </article>
+    </div>
+  </div>
+</dialog>
 
+<dialog class="win" id="win-biosteel" aria-labelledby="t-biosteel">
+  <div class="win-bar">
+    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="win-title"><span class="pre">valeriaflorezs / </span>biosteel</span>
+    <button class="win-close" type="button" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="win-body">
+    <div class="win-head"><img src="assets/icons/biosteel.png" alt="" width="72" height="72"><div><h2 id="t-biosteel">Biosteel <em>de Colombia</em></h2><p class="mono">Feb 2026 — presente · Barranquilla</p></div></div>
+    <ol class="tl">
+        <li class="tilt">
+          <div class="mono">Feb 2026 — Presente</div>
+          <h3>Analista de datos</h3>
+          <div class="org">Biosteel de Colombia SA · Barranquilla</div>
+          <ul>
+            <li>Lideré la migración de los reportes operativos y comerciales desde procesos manuales en Excel hacia modelos dinámicos de BI en Power BI.</li>
+            <li>Diseñé modelos de datos con DAX y M (Power Query) para consolidar fuentes dispersas en reportes únicos y automáticos.</li>
+            <li>Implementé transformaciones limpias que redujeron el tiempo de preparación de informes del equipo comercial.</li>
+            <li>Trabajé con Python y R para análisis exploratorio y validación de fuentes antes de cargarlas al modelo.</li>
+          </ul>
+          <div class="chips tech"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Power Query</span><span class="chip">Python</span><span class="chip">R</span><span class="chip">Excel</span></div>
+        </li>
+        <li class="tilt">
+          <div class="mono">Dic 2025 — Ene 2026</div>
+          <h3>Auxiliar administrativo</h3>
+          <div class="org">Biosteel de Colombia SA · Barranquilla</div>
+          <p>Rol temporal enfocado en la transición digital y la infraestructura de datos. Apoyé la centralización de información de Facturación, Contabilidad, Almacén y Compras, migré reportes históricos de Excel a modelos dinámicos en Power BI y traduje las métricas manuales de cada líder en dashboards automatizados.</p>
+        </li>
+    </ol>
+    <div class="proj-grid">
         <article class="proj tilt">
           <div class="viz" aria-hidden="true">
             <svg viewBox="0 0 320 200" role="img">
@@ -262,8 +328,8 @@
           <div class="proj-body">
             <span class="mono">Ilustración · Biosteel</span>
             <h3>Del Excel manual a Power BI</h3>
-            <p>Migración de reportes operativos y comerciales a modelos dinámicos y automáticos, con modelos de datos en DAX y M (Power Query).</p>
-            <div class="chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Power Query</span></div>
+            <p>Migración de reportes operativos y comerciales desde Excel a modelos dinámicos y automáticos en Power BI.</p>
+            <div class="chips"><span class="chip">Power BI</span><span class="chip">Excel</span><span class="chip">Power BI</span></div>
           </div>
         </article>
 
@@ -289,29 +355,28 @@
             </svg>
           </div>
           <div class="proj-body">
-            <span class="mono">Más proyectos</span>
-            <h3>R, estadística y algoritmos</h3>
-            <p>Modelado estadístico con R Markdown, riesgo crediticio (Give Me Some Credit), visualización de datos, teoría de grafos y estructuras de datos en Python y Java.</p>
-            <div class="chips"><span class="chip">R</span><span class="chip">Python</span><span class="chip">Java</span></div>
-            <div class="proj-links"><a href="https://github.com/valeriaflorezs?tab=repositories" target="_blank" rel="noopener">Ver los 28 repositorios ↗</a></div>
+            <span class="mono">Ilustración · Modelado</span>
+            <h3>Modelos de datos con DAX y M</h3>
+            <p>Fuentes dispersas consolidadas en un solo modelo, con medidas claras y transformaciones limpias que automatizan los reportes.</p>
+            <div class="chips"><span class="chip">DAX</span><span class="chip">Power Query</span><span class="chip">Power BI</span></div>
           </div>
         </article>
+    </div>
+  </div>
+</dialog>
 
-      </div>
-    </section>
-
-    <section id="comunidad">
-      <div class="sec-head"><span class="mono">04</span><h2>Comunidad <em>Singularity</em></h2></div>
-      <div class="orbit-wrap">
-        <div>
-          <p class="lead">Lidero el grupo estudiantil de Ciencia de Datos e IA de Uninorte, donde impulsamos proyectos que democratizan el conocimiento en STEM.</p>
-          <ul class="plain">
-            <li><strong>Presidenta</strong> · periodo 2026-2</li>
-            <li><strong>Vicepresidenta</strong> · 2025 — 2026</li>
-            <li><strong>Directora del Newsletter</strong> · Revista de Ciencia de Datos</li>
-            <li><strong>Productora audiovisual</strong> · equipo de prensa</li>
-          </ul>
-        </div>
+<dialog class="win" id="win-singularity" aria-labelledby="t-singularity">
+  <div class="win-bar">
+    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="win-title"><span class="pre">valeriaflorezs / </span>singularity</span>
+    <button class="win-close" type="button" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="win-body">
+    <div class="win-head"><img src="assets/icons/singularity.png" alt="" width="72" height="72"><div><h2 id="t-singularity">Sing<em>ularity</em></h2><p class="mono">Grupo de Ciencia de Datos e IA · Uninorte</p></div></div>
+    <div class="sing-hero">
+      <figure class="win-photo"><img src="assets/singularity.webp" alt="Valeria con el polo de Singularity" loading="lazy"><figcaption class="mono">Singularity ★ 2026</figcaption></figure>
+      <div>
+        <p class="lead">Lidero el grupo estudiantil de Ciencia de Datos e IA de Uninorte, donde impulsamos proyectos que democratizan el conocimiento en STEM.</p>
         <div class="orbit" aria-hidden="true">
           <div class="ring">
             <div class="node n1"><span>Talleres</span></div>
@@ -322,23 +387,8 @@
           <div class="core"><span>Singu<br>larity ★</span></div>
         </div>
       </div>
-    </section>
-
-    <section id="experiencia">
-      <div class="sec-head"><span class="mono">05</span><h2><em>Experiencia</em></h2></div>
-      <ol class="tl">
-        <li class="tilt">
-          <div class="mono">Feb 2026 — Presente</div>
-          <h3>Analista de datos</h3>
-          <div class="org">Biosteel de Colombia SA · Barranquilla</div>
-          <ul>
-            <li>Lideré la migración de los reportes operativos y comerciales desde procesos manuales en Excel hacia modelos dinámicos de BI en Power BI.</li>
-            <li>Diseñé modelos de datos con DAX y M (Power Query) para consolidar fuentes dispersas en reportes únicos y automáticos.</li>
-            <li>Implementé transformaciones limpias que redujeron el tiempo de preparación de informes del equipo comercial.</li>
-            <li>Trabajé con Python y R para análisis exploratorio y validación de fuentes antes de cargarlas al modelo.</li>
-          </ul>
-          <div class="chips tech"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Power Query</span><span class="chip">Python</span><span class="chip">R</span><span class="chip">Excel</span></div>
-        </li>
+    </div>
+    <ol class="tl">
         <li class="tilt">
           <div class="mono">Jun 2026 — Presente</div>
           <h3>Presidenta</h3>
@@ -349,12 +399,6 @@
             <li>Supervisé la estrategia de contenido: vlogs, reels y newsletters.</li>
             <li>Gestioné equipos multidisciplinarios y la articulación con áreas directivas de la universidad.</li>
           </ul>
-        </li>
-        <li class="tilt">
-          <div class="mono">Dic 2025 — Ene 2026</div>
-          <h3>Auxiliar administrativo</h3>
-          <div class="org">Biosteel de Colombia SA · Barranquilla</div>
-          <p>Rol temporal enfocado en la transición digital y la infraestructura de datos. Apoyé la centralización de información de Facturación, Contabilidad, Almacén y Compras, migré reportes históricos de Excel a modelos dinámicos en Power BI y traduje las métricas manuales de cada líder en dashboards automatizados.</p>
         </li>
         <li class="tilt">
           <div class="mono">Jun 2025 — Jun 2026</div>
@@ -374,31 +418,69 @@
           <div class="org">Singularity · Equipo de prensa</div>
           <p>Creación y edición de videos, imágenes y flyers para las redes sociales del grupo.</p>
         </li>
-      </ol>
-    </section>
-
-    <section id="formacion">
-      <div class="sec-head"><span class="mono">06</span><h2>Formación &amp; <em>certificaciones</em></h2></div>
-      <div class="cols">
-        <div>
-          <h3 class="mono">Educación</h3>
-          <ul class="plain"><li><strong>Universidad del Norte</strong><br><span style="color:var(--muted)">Grado en Ciencia de Datos · 2024 — 2027</span></li></ul>
-        </div>
-        <div>
-          <h3 class="mono">Certificaciones</h3>
-          <ul class="plain">
-            <li>Inmersión en Liderazgo</li>
-            <li>Análisis de datos con Power BI</li>
-            <li>Taller en Producción y Narrativas Audiovisuales</li>
-            <li>AI Fluency: Framework &amp; Foundations</li>
-            <li>ProducTeam: Producción de eventos</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
+    </ol>
   </div>
-</main>
+</dialog>
+
+<dialog class="win" id="win-uninorte" aria-labelledby="t-uninorte">
+  <div class="win-bar">
+    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="win-title"><span class="pre">valeriaflorezs / </span>uninorte</span>
+    <button class="win-close" type="button" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="win-body">
+    <div class="win-head"><img src="assets/icons/uninorte.png" alt="" width="72" height="72"><div><h2 id="t-uninorte">Universidad <em>del Norte</em></h2><p class="mono">Formación y certificaciones</p></div></div>
+    <div class="cols">
+      <div>
+        <h3 class="mono">Educación</h3>
+        <ul class="plain"><li><strong>Grado en Ciencia de Datos</strong><br><span style="color:var(--muted)">Universidad del Norte · 2024 — 2027</span></li></ul>
+      </div>
+      <div>
+        <h3 class="mono">Certificaciones</h3>
+        <ul class="plain">
+          <li>Inmersión en Liderazgo</li>
+          <li>Análisis de datos con Power BI</li>
+          <li>Taller en Producción y Narrativas Audiovisuales</li>
+          <li>AI Fluency: Framework &amp; Foundations</li>
+          <li>ProducTeam: Producción de eventos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="win" id="win-datavisuallab" aria-labelledby="t-datavisuallab">
+  <div class="win-bar">
+    <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="win-title"><span class="pre">valeriaflorezs / </span>data-visual-lab</span>
+    <button class="win-close" type="button" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="win-body">
+    <div class="win-head"><img src="assets/icons/datavisuallab.png" alt="" width="72" height="72"><div><h2 id="t-datavisuallab">Data &amp; <em>Visual Lab</em></h2><p class="mono">Mi iniciativa · datos en soluciones visuales</p></div></div>
+    <p class="lead">Transformamos datos en soluciones visuales que impactan, para estudiantes, docentes y emprendedores.</p>
+    <div class="cols">
+      <div>
+        <h3 class="mono">Servicios</h3>
+        <ul class="plain">
+          <li><strong>Dashboard Académico</strong><br><span style="color:var(--muted)">Dashboards interactivos para tesis e investigaciones.</span></li>
+          <li><strong>Data Fácil</strong><br><span style="color:var(--muted)">Análisis y visualización de estadísticas y encuestas.</span></li>
+          <li><strong>Visualiza tu Proyecto</strong><br><span style="color:var(--muted)">Diseño visual para presentaciones académicas.</span></li>
+          <li><strong>Domina la Herramienta</strong><br><span style="color:var(--muted)">Tutorías personalizadas 1:1 en habilidades técnicas.</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="mono">Cómo trabajamos</h3>
+        <ul class="plain">
+          <li><strong>1.</strong> Consulta exploratoria gratuita de 20 minutos.</li>
+          <li><strong>2.</strong> Propuesta personalizada con tiempos, costos y entregables.</li>
+          <li><strong>3.</strong> Entrega del proyecto con capacitación para usar la solución.</li>
+        </ul>
+        <div class="chips"><span class="chip">Power BI</span><span class="chip">Excel</span><span class="chip">Canva</span><span class="chip">Python</span></div>
+      </div>
+    </div>
+    <div class="proj-links"><a href="https://valeriaflorezs.github.io/DataVisualLab/" target="_blank" rel="noopener">Visitar el sitio ↗</a><a href="https://github.com/valeriaflorezs/DataVisualLab" target="_blank" rel="noopener">Repositorio ↗</a></div>
+  </div>
+</dialog>
 
 <footer id="contacto">
   <div class="wrap">
@@ -414,6 +496,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>
