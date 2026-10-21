@@ -180,6 +180,7 @@
     "¿Quieres automatizar tu": "Want to automate your",
     "inteligencia de negocios": "business intelligence",
     "o": "or",
+    "Dirección estratégica del grupo estudiantil (periodo 2026-2). Coordiné eventos de divulgación técnica y talleres de Python, R y Power BI, supervisé la estrategia de contenido (vlogs, reels y newsletters) y gestioné equipos multidisciplinarios y la articulación con áreas directivas de la universidad.": "Strategic direction of the student group (term 2026-2). I coordinated technical outreach events and Python, R and Power BI workshops, oversaw the content strategy (vlogs, reels and newsletters) and managed multidisciplinary teams and coordination with the university's leadership areas.",
     "Correo": "Email"
   };
   var EN_QUOTE = {
