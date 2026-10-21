@@ -198,6 +198,7 @@
     "Análisis de datos con Power BI": "Data analysis with Power BI",
     "Inmersión en Liderazgo": "Leadership Immersion",
     "ProducTeam: Producción de eventos": "ProducTeam: Event production",
+    "Valeria con su certificado de la Cátedra Barranquilla 2026": "Valeria with her Cátedra Barranquilla 2026 certificate",
     "Correo": "Email"
   };
   var EN_QUOTE = {
