@@ -88,7 +88,7 @@
 
   // Aparición al hacer scroll, escalonada dentro de cada grupo.
   var groups = [".hub-list > *", ".chips > *", ".tl > li", ".plain > li", ".about > *", ".sec-head",
-                ".skills-board > *", ".tiles > *", ".proj-grid > *", ".orbit-wrap > *", ".pillars > *", ".folders > *", ".about-wrap > *"];
+                ".skills-board > *", ".tiles > *", ".hobbies > *", ".proj-grid > *", ".orbit-wrap > *", ".pillars > *", ".folders > *", ".about-wrap > *"];
   var targets = [];
   groups.forEach(function (sel) {
     var seen = new Map();
