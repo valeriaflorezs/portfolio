@@ -397,21 +397,59 @@ section > .tl.cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 2
 .hobby:hover .ico { transform: rotate(-8deg) scale(1.1); }
 .hobby h3 { font-size: 1.05em; font-weight: 500; letter-spacing: -.01em; line-height: 1.25; }
 
-/* ---------- letrero con la frase ---------- */
-.sign { margin-top: clamp(64px, 10vh, 120px); overflow: hidden; padding: clamp(18px, 3vw, 34px) 0; background: var(--gold); color: var(--deep); border-block: 3px solid var(--deep); }
-.sign-track { display: flex; width: max-content; animation: sign 70s linear infinite; }
-.sign:hover .sign-track { animation-play-state: paused; }
-.sign-set { display: flex; align-items: center; flex: none; }
-.sign-set span { font-family: var(--serif); font-style: italic; font-size: clamp(28px, 5vw, 68px); line-height: 1.1; white-space: nowrap; }
-.sign-set i { font-style: normal; font-size: clamp(22px, 3vw, 40px); color: var(--primary); padding: 0 clamp(24px, 4vw, 56px); }
-@keyframes sign { to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) {
-  .sign-track { animation: none; width: auto; }
-  .sign-set + .sign-set, .sign-set span + i, .sign-set span:nth-of-type(2) { display: none; }
-  .sign-set { padding: 0 var(--gutter); }
-  .sign-set span { white-space: normal; text-align: center; }
-}
+/* ---------- frase que me identifica ---------- */
+.quote { margin: clamp(64px, 10vh, 120px) 0 0; padding: clamp(48px, 9vw, 120px) var(--gutter); text-align: center; background: radial-gradient(120% 140% at 50% 0%, var(--primary), var(--deep)); color: var(--gold); border-block: 3px solid var(--lav); }
+.q-mark { display: block; font-size: clamp(22px, 3vw, 36px); color: var(--lav); margin-bottom: 18px; }
+.quote blockquote { max-width: 30em; margin: 0 auto; font-family: var(--serif); font-style: italic; }
+.q-main { font-size: clamp(32px, 6.2vw, 84px); line-height: 1.08; letter-spacing: -.01em; }
+.q-sub { margin-top: clamp(14px, 2vw, 28px); font-size: clamp(20px, 3vw, 40px); line-height: 1.25; color: #d6cffa; }
+.quote em { color: #fff; text-decoration: underline; text-decoration-color: var(--lav); text-decoration-thickness: .06em; text-underline-offset: .18em; }
+.quote figcaption { margin-top: clamp(20px, 3vw, 36px); color: var(--lav); font-size: 12px; letter-spacing: .08em; }
+.js .quote .w { opacity: .2; transition: opacity .5s ease; }
+.js .quote .w.lit { opacity: 1; }
 @media (prefers-reduced-motion: no-preference) {
   .hobby .ico svg { animation: bobi 3.6s ease-in-out infinite alternate; animation-delay: calc(var(--n, 0) * .4s); }
   @keyframes bobi { to { transform: translateY(-3px) rotate(4deg); } }
 }
+
+/* ---------- skills técnicas: raspa y gana ---------- */
+.skill-card.wide { grid-column: 1 / -1; }
+.scratch-hint { margin: -6px 0 12px; font-size: 12px; color: var(--muted); }
+.scratch-all { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.scratch-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); }
+.scratch { position: relative; overflow: hidden; display: grid; place-items: center; min-height: 64px; padding: 8px 10px; border: 1px solid color-mix(in srgb, var(--lav) 55%, transparent); border-radius: 14px; background: color-mix(in srgb, var(--lav) 20%, transparent); color: var(--fg); font: 500 14px/1.2 var(--sans); text-align: center; cursor: crosshair; }
+.scratch canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: pan-y; transition: opacity .5s; }
+.scratch.done canvas { opacity: 0; pointer-events: none; }
+.scratch.done span { animation: pop .5s cubic-bezier(.3,1.5,.5,1); }
+@keyframes pop { from { transform: scale(.85); } to { transform: none; } }
+.scratch:focus-visible, .scratch-all:focus-visible { outline: 2px solid var(--lav); outline-offset: 2px; }
+
+/* ---------- habilidades blandas: cintas que se deslizan ---------- */
+.drifts { display: grid; gap: 12px; margin-inline: calc(var(--pad, 20px) * -1); }
+.drift { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.drift-track { display: flex; width: max-content; animation: drift 38s linear infinite; }
+.drift.rev .drift-track { animation-direction: reverse; animation-duration: 46s; }
+.drift:hover .drift-track { animation-play-state: paused; }
+.drift-set { display: flex; align-items: center; flex: none; }
+.drift-set .chip { font-size: clamp(15px, 1.6vw, 20px); padding: 10px 22px; white-space: nowrap; }
+.drift-set i { font-style: normal; color: var(--accent); padding: 0 14px; }
+@keyframes drift { to { transform: translateX(-50%); } }
+@media (max-width: 520px) { .drifts { --pad: 16px; } }
+@media (prefers-reduced-motion: reduce) {
+  .drift { mask-image: none; -webkit-mask-image: none; }
+  .drift-track { animation: none; width: auto; }
+  .drift-set + .drift-set { display: none; }
+  .drift-set { flex-wrap: wrap; gap: 8px; }
+  .drift-set i { display: none; }
+  .drifts { margin-inline: 0; }
+  .drift.rev { display: none; }
+}
+.cert-list { margin: 8px 0 4px; }
+.cert-list li { padding: 2px 0; }
+
+/* ---------- selector de idioma ---------- */
+.lang-btn { width: auto; min-width: 34px; padding: 0 10px; font: 600 12px/1 var(--mono); letter-spacing: .04em; }
+.lang-btn:hover, .theme-btn:hover { background: rgba(255,255,255,.14); }
+.nav .lang-btn { margin-left: auto; margin-right: -8px; }
+.lang-fab { position: fixed; top: 14px; right: 14px; z-index: 30; height: 34px; }
+@media (pointer: coarse) { .lang-btn { height: 44px; min-width: 44px; } }

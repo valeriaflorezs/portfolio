@@ -2,6 +2,7 @@
   var root = document.documentElement;
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var $ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  if (window.i18n) i18n.init();
 
   // Tema claro/oscuro: respeta la preferencia del sistema y recuerda la elección.
   var btn = document.getElementById("theme");
@@ -47,12 +48,13 @@
   // Texto que se escribe solo (con reduced-motion muestra la primera frase sin animar).
   var typer = document.getElementById("typer");
   if (typer) {
-    var words = ["dashboards en Power BI", "modelos en DAX", "análisis en Python y R", "contenido que explica datos"];
+    var words = window.i18n ? i18n.typer() : ["dashboards en Power BI"];
+    document.addEventListener("langchange", function () { words = i18n.typer(); if (reduce) typer.textContent = words[0]; });
     if (reduce) { typer.textContent = words[0]; }
     else {
       var w = 0, c = 0, del = false;
       (function tick() {
-        var word = words[w];
+        var word = words[w % words.length];
         c += del ? -1 : 1;
         typer.textContent = word.slice(0, c);
         var wait = del ? 28 : 65;
@@ -62,6 +64,58 @@
       })();
     }
   }
+
+  // Skills técnicas: tarjetas para raspar (el texto ya está en el HTML; el lienzo lo cubre).
+  var scratchAll = document.querySelector(".scratch-all");
+  var scratches = $(".scratch").map(function (el) {
+    var cv = document.createElement("canvas"), ctx = cv.getContext("2d");
+    if (!ctx) return null;
+    cv.setAttribute("aria-hidden", "true");
+    el.appendChild(cv);
+    var w = 0, h = 0, down = false, lx = 0, ly = 0, n = 0;
+    function paint() {
+      var r = el.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+      if (!r.width) return;
+      w = r.width; h = r.height;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var g = ctx.createLinearGradient(0, 0, w, h);
+      g.addColorStop(0, "#3C2E7A"); g.addColorStop(.5, "#8073C3"); g.addColorStop(1, "#2D235B");
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = "rgba(244,232,193,.8)"; ctx.font = "600 11px 'JetBrains Mono', monospace";
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(window.i18n && i18n.lang === "en" ? "✦ scratch here ✦" : "✦ raspa aquí ✦", w / 2, h / 2);
+    }
+    function done() { el.classList.add("done"); }
+    function cleared() {
+      var d = ctx.getImageData(0, 0, cv.width, cv.height).data, t = 0, c = 0;
+      for (var i = 3; i < d.length; i += 64) { t++; if (d[i] < 128) c++; }
+      return c / t;
+    }
+    function scratch(e) {
+      var r = el.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.lineWidth = 26; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(x, y); ctx.stroke();
+      lx = x; ly = y;
+      if (++n % 4 === 0 && cleared() > .5) done();
+    }
+    cv.addEventListener("pointerdown", function (e) {
+      down = true; var r = el.getBoundingClientRect(); lx = e.clientX - r.left; ly = e.clientY - r.top;
+      try { cv.setPointerCapture(e.pointerId); } catch (x) {}
+      scratch(e);
+    });
+    cv.addEventListener("pointermove", function (e) { if (down) scratch(e); });
+    ["pointerup", "pointercancel"].forEach(function (t) { cv.addEventListener(t, function () { down = false; }); });
+    el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); done(); } });
+    el.addEventListener("click", function (e) { if (e.detail === 0) done(); });
+    paint();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (!el.classList.contains("done") && !n) paint(); });
+    document.addEventListener("langchange", function () { if (!el.classList.contains("done") && !n) paint(); });
+    return { el: el, done: done };
+  }).filter(Boolean);
+  if (scratchAll) scratchAll.addEventListener("click", function () { scratches.forEach(function (s, i) { setTimeout(s.done, i * 90); }); });
+
   if (reduce) return;
   root.classList.add("js");
 
@@ -105,6 +159,37 @@
   }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
   targets.forEach(function (el) { io.observe(el); });
 
+  // Frase: las palabras se iluminan una a una mientras se hace scroll.
+  var quote = document.querySelector(".quote"), qw = [];
+  function buildQuote() {
+    qw = [];
+    if (!quote) return;
+    $(".q-main, .q-sub", quote).forEach(function (p) {
+      (function split(node) {
+        Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+          if (n.nodeType === 3) {
+            var f = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(function (t) {
+              if (!t) return;
+              if (/^\s+$/.test(t)) { f.appendChild(document.createTextNode(t)); return; }
+              var s = document.createElement("span"); s.className = "w"; s.textContent = t; qw.push(s); f.appendChild(s);
+            });
+            node.replaceChild(f, n);
+          } else if (n.nodeType === 1) split(n);
+        });
+      })(p);
+    });
+  }
+  buildQuote();
+  document.addEventListener("langchange", function () { buildQuote(); lightQuote(); });
+  function lightQuote() {
+    if (!qw.length) return;
+    var r = quote.getBoundingClientRect();
+    var p = (innerHeight * .85 - r.top) / (r.height + innerHeight * .25);
+    var k = Math.round(Math.max(0, Math.min(1, p)) * qw.length);
+    qw.forEach(function (w, i) { w.classList.toggle("lit", i < k); });
+  }
+
   // Barra de progreso de lectura.
   var bar = document.createElement("div"); bar.className = "progress";
   var nav = document.querySelector(".nav"); if (nav) nav.appendChild(bar);
@@ -113,6 +198,7 @@
     if (raf) return;
     raf = requestAnimationFrame(function () {
       raf = 0;
+      lightQuote();
       var max = root.scrollHeight - innerHeight;
       bar.style.transform = "scaleX(" + (max > 0 ? scrollY / max : 0) + ")";
     });
