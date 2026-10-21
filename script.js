@@ -124,6 +124,88 @@
     if (matchMedia("(hover: none)").matches) idcard.addEventListener("click", function () { idcard.classList.toggle("flipped"); });
   }
 
+  // Acordeones de paneles: uno abierto a la vez.
+  $(".acc").forEach(function (acc) {
+    var items = $(".acc-item", acc);
+    function open(it) {
+      items.forEach(function (o) {
+        var on = o === it, h = o.querySelector(".acc-head");
+        o.classList.toggle("open", on);
+        if (h) h.setAttribute("aria-expanded", on ? "true" : "false");
+      });
+    }
+    acc.classList.add("acc-on");
+    items.forEach(function (it) {
+      var h = it.querySelector(".acc-head");
+      if (h) h.addEventListener("click", function () { if (!it.classList.contains("open")) open(it); });
+    });
+    open(items[0]);
+  });
+
+  // Logros en números: tarjeta central grande, contador y arrastre con el mouse.
+  var nums = document.querySelector(".nums");
+  if (nums) {
+    var cards = $(".num-card", nums), fill = document.querySelector(".nums-fill");
+    var visible = false, counted = {}, current = -1;
+    var fmt = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0"); };
+    function count(card, i) {
+      var el = card.querySelector("[data-count]");
+      if (!el || counted[i]) return;
+      counted[i] = true;
+      var to = +el.getAttribute("data-count");
+      if (reduce) return;
+      var t0 = performance.now();
+      (function step(t) {
+        var k = Math.min(1, (t - t0) / 1100), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = fmt(Math.round(to * e));
+        if (k < 1) requestAnimationFrame(step);
+      })(t0);
+    }
+    function upd() {
+      var r = nums.getBoundingClientRect(), mid = r.left + r.width / 2, best = 0, bd = 1e9;
+      cards.forEach(function (c, i) {
+        var cr = c.getBoundingClientRect(), d = Math.abs(cr.left + cr.width / 2 - mid);
+        var t = Math.min(1, d / (cr.width * 1.1));
+        c.style.setProperty("--s", (1 - .1 * t).toFixed(3));
+        c.style.setProperty("--o", (1 - .45 * t).toFixed(3));
+        if (d < bd) { bd = d; best = i; }
+      });
+      if (best !== current) { current = best; cards.forEach(function (c, i) { c.classList.toggle("on", i === best); }); }
+      if (visible) count(cards[best], best);
+      var max = nums.scrollWidth - nums.clientWidth;
+      if (fill) fill.style.transform = "scaleX(" + (max > 0 ? nums.scrollLeft / max : 0) + ")";
+    }
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible) upd(); }, { threshold: .35 }).observe(nums);
+    nums.addEventListener("scroll", upd, { passive: true });
+    addEventListener("resize", upd);
+    function go(dir) { nums.scrollBy({ left: dir * (cards[0].offsetWidth + 16), behavior: reduce ? "auto" : "smooth" }); }
+    var pv = document.querySelector(".nums-btn.prev"), nx = document.querySelector(".nums-btn.next");
+    if (pv) pv.addEventListener("click", function () { go(-1); });
+    if (nx) nx.addEventListener("click", function () { go(1); });
+    nums.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") { e.preventDefault(); go(1); } else if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); } });
+    var dragging = false, sx = 0, sl = 0;
+    nums.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse") return; dragging = true; sx = e.clientX; sl = nums.scrollLeft; nums.classList.add("drag"); });
+    addEventListener("pointermove", function (e) { if (dragging) nums.scrollLeft = sl - (e.clientX - sx); });
+    addEventListener("pointerup", function () { if (!dragging) return; dragging = false; nums.classList.remove("drag"); });
+    upd();
+  }
+
+  // Menú: resalta la sección en pantalla.
+  var navLinks = $(".nav ul a"), navSecs = navLinks.map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); }), navCur = -1;
+  function spy() {
+    var y = innerHeight * .35, cur = 0;
+    navSecs.forEach(function (s, i) { if (s && s.getBoundingClientRect().top <= y) cur = i; });
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) cur = navSecs.length - 1;
+    if (cur === navCur) return;
+    navCur = cur;
+    navLinks.forEach(function (a, i) { if (i === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+    var ul = navLinks[cur] && navLinks[cur].closest("ul");
+    if (ul && ul.scrollWidth > ul.clientWidth) ul.scrollTo({ left: navLinks[cur].offsetLeft - ul.clientWidth / 2 + navLinks[cur].offsetWidth / 2, behavior: reduce ? "auto" : "smooth" });
+  }
+  addEventListener("scroll", spy, { passive: true });
+  addEventListener("resize", spy);
+  spy();
+
   if (reduce) return;
   root.classList.add("js");
 
