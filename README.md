@@ -18,3 +18,6 @@ Settings → Pages → Deploy from a branch → `main` / root. El sitio queda en
 
 ## Caché
 Los enlaces a `styles.css` y `script.js` llevan `?v=N`. Al cambiar esos archivos, sube el número en `index.html` y `links.html` para que los navegadores descarguen la versión nueva.
+
+## Íconos
+Los logos de herramientas vienen de [Simple Icons](https://simpleicons.org) (CC0) y los íconos de línea (SQL, DAX, Power Query y hobbies) de [Lucide](https://lucide.dev) (ISC); el de Java, de [Devicon](https://devicon.dev) (MIT). Están incrustados como SVG en `index.html` y toman su color de la paleta (`.tile svg`, `.hobby .ico`). Las marcas pertenecen a sus dueños.
