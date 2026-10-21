@@ -6,7 +6,7 @@
     "Todos los enlaces de Valeria F. Sarmiento en un solo lugar.": "All of Valeria F. Sarmiento's links in one place.",
     "Data Analyst y creadora de contenido tech. Power BI, Python, R, SQL. Presidenta de Singularity, estudiante de Ciencia de Datos en Uninorte.": "Data Analyst and tech content creator. Power BI, Python, R, SQL. President of Singularity, Data Science student at Uninorte.",
     "Convierto datos dispersos en modelos de Business Intelligence y los explico. Todos mis enlaces en un solo lugar.": "I turn scattered data into Business Intelligence models and explain them. All my links in one place.",
-    "Enlaces": "Links", "Sobre mí": "About me", "Skills": "Skills", "Carpetas": "Folders", "Contacto": "Contact",
+    "Enlaces": "Links", "Sobre mí": "About me", "Skills": "Skills", "Hobbies": "Hobbies", "Carpetas": "Folders", "Contacto": "Contact",
     "Cambiar tema": "Toggle theme",
     "Data Analyst & Tech Content Creator. Presidenta de Singularity y estudiante de": "Data Analyst & Tech Content Creator. President of Singularity and student of",
     "Ciencia de Datos": "Data Science",

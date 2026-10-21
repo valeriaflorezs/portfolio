@@ -664,3 +664,5 @@ a.pillar h3 { margin-top: 0; padding-right: 28px; }
   #skills .tiles.five .tile { min-height: 44px; }
   #skills .skill-card { padding-block: 10px; }
 }
+
+#top { scroll-margin-top: 58px; }
