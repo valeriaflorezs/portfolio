@@ -146,6 +146,12 @@
   // Logros en números: tarjeta central grande, contador y arrastre con el mouse.
   var nums = document.querySelector(".nums");
   if (nums) {
+    // Tiempo en Singularity (desde julio de 2024): se actualiza solo con la fecha.
+    $("[data-since]", nums).forEach(function (el) {
+      var p = el.getAttribute("data-since").split("-"), n = new Date();
+      var m = (n.getFullYear() - +p[0]) * 12 + (n.getMonth() + 1 - +p[1]);
+      el.setAttribute("data-count", m); el.textContent = m;
+    });
     var cards = $(".num-card", nums), fill = document.querySelector(".nums-fill");
     var visible = false, counted = {}, current = -1;
     var fmt = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0"); };
@@ -153,12 +159,12 @@
       var el = card.querySelector("[data-count]");
       if (!el || counted[i]) return;
       counted[i] = true;
-      var to = +el.getAttribute("data-count");
+      var to = +el.getAttribute("data-count"), suf = el.getAttribute("data-suffix") || "";
       if (reduce) return;
       var t0 = performance.now();
       (function step(t) {
         var k = Math.min(1, (t - t0) / 1100), e = 1 - Math.pow(1 - k, 3);
-        el.textContent = fmt(Math.round(to * e));
+        el.textContent = fmt(Math.round(to * e)) + (k === 1 ? suf : "");
         if (k < 1) requestAnimationFrame(step);
       })(t0);
     }
