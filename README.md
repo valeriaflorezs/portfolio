@@ -1,4 +1,4 @@
-# Portafolio · Valeria Sarmiento
+# Portafolio · Valeria F. Sarmiento
 
 Sitio estático (HTML + CSS + JS, sin build) que combina portafolio y "Linktree". Paleta de marca morada (`#2D235B`, `#3C2E7A`, `#8073C3`, `#A594F1`, `#F4E8C1`) definida como variables al inicio de `styles.css`.
 
