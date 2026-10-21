@@ -199,6 +199,19 @@
     "Inmersión en Liderazgo": "Leadership Immersion",
     "ProducTeam: Producción de eventos": "ProducTeam: Event production",
     "Valeria con su certificado de la Cátedra Barranquilla 2026": "Valeria with her Cátedra Barranquilla 2026 certificate",
+    "Ver credencial ↗": "View credential ↗",
+    "Horas de formación certificada": "Hours of certified training",
+    "Universidad del Norte · 5 certificados": "Universidad del Norte · 5 certificates",
+    "Miembros en Singularity": "Members in Singularity",
+    "Grupo de Ciencia de Datos e IA, donde soy presidenta": "Data Science and AI group, where I'm president",
+    "Meses en Singularity": "Months in Singularity",
+    "4 roles desde julio de 2024": "4 roles since July 2024",
+    "Áreas centralizadas en Power BI": "Areas centralized in Power BI",
+    "Biosteel · Facturación, Contabilidad, Almacén y Compras": "Biosteel · Billing, Accounting, Warehouse and Purchasing",
+    "Configuraciones de modelos evaluadas": "Model configurations evaluated",
+    "Predicción de impago · 7 modelos × 4 balanceo × 4 optimización": "Payment default prediction · 7 models × 4 balancing × 4 optimization",
+    "Herramientas y lenguajes": "Tools and languages",
+    "8 lenguajes y 15 plataformas": "8 languages and 15 platforms",
     "Correo": "Email"
   };
   var EN_QUOTE = {
