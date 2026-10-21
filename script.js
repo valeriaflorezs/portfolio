@@ -209,7 +209,7 @@
 
   // Videos de hobbies y de la carpeta Uninorte: se reproducen solo cuando están en pantalla.
   // Con data-clips="a,b" rotan en secuencia; con movimiento reducido solo se ve el póster.
-  var hv = $(".hobby-media, .reel video");
+  var hv = $(".hobby-media, .reel video, .head-clip");
   if (hv.length && !reduce) {
     var webm = !!document.createElement("video").canPlayType("video/webm");
     hv.forEach(function (v) {
