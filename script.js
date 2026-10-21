@@ -134,6 +134,7 @@
         if (h) h.setAttribute("aria-expanded", on ? "true" : "false");
       });
     }
+    acc.style.setProperty("--n", items.length);
     acc.classList.add("acc-on");
     items.forEach(function (it) {
       var h = it.querySelector(".acc-head");
@@ -205,6 +206,27 @@
   addEventListener("scroll", spy, { passive: true });
   addEventListener("resize", spy);
   spy();
+
+  // Videos de hobbies y de la carpeta Uninorte: se reproducen solo cuando están en pantalla.
+  // Con data-clips="a,b" rotan en secuencia; con movimiento reducido solo se ve el póster.
+  var hv = $(".hobby-media, .reel video, .head-clip");
+  if (hv.length && !reduce) {
+    var webm = !!document.createElement("video").canPlayType("video/webm");
+    hv.forEach(function (v) {
+      var clips = (v.getAttribute("data-clips") || "").split(",").filter(Boolean), k = 0;
+      if (clips.length > 1) {
+        v.addEventListener("ended", function () {
+          k = (k + 1) % clips.length;
+          v.src = "assets/hobbies/" + clips[k] + (webm ? ".webm" : ".mp4");
+          var p = v.play(); if (p && p.catch) p.catch(function () {});
+        });
+      }
+    });
+    var vio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); });
+    }, { threshold: .25 });
+    hv.forEach(function (v) { vio.observe(v); });
+  }
 
   if (reduce) return;
   root.classList.add("js");
