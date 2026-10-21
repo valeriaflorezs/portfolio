@@ -116,6 +116,14 @@
   }).filter(Boolean);
   if (scratchAll) scratchAll.addEventListener("click", function () { scratches.forEach(function (s, i) { setTimeout(s.done, i * 90); }); });
 
+
+  // Tarjeta colgante: en pantallas táctiles se voltea al tocarla; con teclado, Enter o espacio.
+  var idcard = document.querySelector(".idcard");
+  if (idcard) {
+    idcard.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); idcard.classList.toggle("flipped"); } });
+    if (matchMedia("(hover: none)").matches) idcard.addEventListener("click", function () { idcard.classList.toggle("flipped"); });
+  }
+
   if (reduce) return;
   root.classList.add("js");
 
@@ -128,7 +136,7 @@
           var f = document.createDocumentFragment();
           n.textContent.split("").forEach(function (ch) {
             var s = document.createElement("span");
-            s.className = "ch"; s.style.setProperty("--i", i++); s.textContent = ch;
+            s.className = "ch"; s.style.setProperty("--i", i++); s.textContent = ch === " " ? "\u00a0" : ch;
             f.appendChild(s);
           });
           node.replaceChild(f, n);
@@ -159,37 +167,6 @@
   }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
   targets.forEach(function (el) { io.observe(el); });
 
-  // Frase: las palabras se iluminan una a una mientras se hace scroll.
-  var quote = document.querySelector(".quote"), qw = [];
-  function buildQuote() {
-    qw = [];
-    if (!quote) return;
-    $(".q-main, .q-sub", quote).forEach(function (p) {
-      (function split(node) {
-        Array.prototype.slice.call(node.childNodes).forEach(function (n) {
-          if (n.nodeType === 3) {
-            var f = document.createDocumentFragment();
-            n.textContent.split(/(\s+)/).forEach(function (t) {
-              if (!t) return;
-              if (/^\s+$/.test(t)) { f.appendChild(document.createTextNode(t)); return; }
-              var s = document.createElement("span"); s.className = "w"; s.textContent = t; qw.push(s); f.appendChild(s);
-            });
-            node.replaceChild(f, n);
-          } else if (n.nodeType === 1) split(n);
-        });
-      })(p);
-    });
-  }
-  buildQuote();
-  document.addEventListener("langchange", function () { buildQuote(); lightQuote(); });
-  function lightQuote() {
-    if (!qw.length) return;
-    var r = quote.getBoundingClientRect();
-    var p = (innerHeight * .85 - r.top) / (r.height + innerHeight * .25);
-    var k = Math.round(Math.max(0, Math.min(1, p)) * qw.length);
-    qw.forEach(function (w, i) { w.classList.toggle("lit", i < k); });
-  }
-
   // Barra de progreso de lectura.
   var bar = document.createElement("div"); bar.className = "progress";
   var nav = document.querySelector(".nav"); if (nav) nav.appendChild(bar);
@@ -198,7 +175,6 @@
     if (raf) return;
     raf = requestAnimationFrame(function () {
       raf = 0;
-      lightQuote();
       var max = root.scrollHeight - innerHeight;
       bar.style.transform = "scaleX(" + (max > 0 ? scrollY / max : 0) + ")";
     });

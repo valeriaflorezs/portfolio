@@ -2,8 +2,8 @@
 // Lo que no aparece aquí (nombres propios, tecnologías, títulos oficiales de cursos) se queda igual.
 (function () {
   var EN = {
-    "Valeria Sarmiento — Enlaces": "Valeria Sarmiento — Links",
-    "Todos los enlaces de Valeria Sarmiento en un solo lugar.": "All of Valeria Sarmiento's links in one place.",
+    "Valeria F. Sarmiento — Enlaces": "Valeria F. Sarmiento — Links",
+    "Todos los enlaces de Valeria F. Sarmiento en un solo lugar.": "All of Valeria F. Sarmiento's links in one place.",
     "Data Analyst y creadora de contenido tech. Power BI, Python, R, SQL. Presidenta de Singularity, estudiante de Ciencia de Datos en Uninorte.": "Data Analyst and tech content creator. Power BI, Python, R, SQL. President of Singularity, Data Science student at Uninorte.",
     "Convierto datos dispersos en modelos de Business Intelligence y los explico. Todos mis enlaces en un solo lugar.": "I turn scattered data into Business Intelligence models and explain them. All my links in one place.",
     "Enlaces": "Links", "Sobre mí": "About me", "Skills": "Skills", "Carpetas": "Folders", "Contacto": "Contact",
@@ -25,7 +25,7 @@
     "También lidero Singularity, el grupo estudiantil de Ciencia de Datos e IA de Uninorte, donde impulsamos proyectos que democratizan el conocimiento en STEM.": "I also lead Singularity, Uninorte's Data Science and AI student group, where we drive projects that democratize STEM knowledge.",
     "¿Buscas automatizar la inteligencia de negocios de tu empresa o colaborar en proyectos de contenido tech?": "Looking to automate your company's business intelligence or collaborate on tech content projects?",
     "Escríbeme.": "Write to me.",
-    "Valeria Sarmiento sonriendo": "Valeria Sarmiento smiling",
+    "Valeria F. Sarmiento sonriendo": "Valeria F. Sarmiento smiling",
     "Barranquilla ✦ Colombia": "Barranquilla ✦ Colombia",
     "Data Science & IA": "Data Science & AI",
     "Tutoriales, proyectos en Python, R y SQL, y visualizaciones en Power BI.": "Tutorials, projects in Python, R and SQL, and Power BI visualizations.",
@@ -151,6 +151,7 @@
     "Contacto ★": "Contact ★",
     "Mi portafolio completo": "My full portfolio",
     "Experiencia, skills y proyectos": "Experience, skills and projects",
+    "Voltéame ↻": "Flip me ↻",
     "Correo": "Email"
   };
   var EN_QUOTE = {
