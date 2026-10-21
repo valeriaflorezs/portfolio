@@ -134,6 +134,7 @@
         if (h) h.setAttribute("aria-expanded", on ? "true" : "false");
       });
     }
+    acc.style.setProperty("--n", items.length);
     acc.classList.add("acc-on");
     items.forEach(function (it) {
       var h = it.querySelector(".acc-head");
@@ -205,6 +206,15 @@
   addEventListener("scroll", spy, { passive: true });
   addEventListener("resize", spy);
   spy();
+
+  // Hobbies con video: se reproduce solo cuando está en pantalla (y no con movimiento reducido).
+  var hv = $(".hobby-media");
+  if (hv.length && !reduce) {
+    var vio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); });
+    }, { threshold: .25 });
+    hv.forEach(function (v) { vio.observe(v); });
+  }
 
   if (reduce) return;
   root.classList.add("js");

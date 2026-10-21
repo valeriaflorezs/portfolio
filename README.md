@@ -10,6 +10,7 @@ Sitio estático (HTML + CSS + JS, sin build) que combina portafolio y "Linktree"
 - Proyectos: las tarjetas están dentro de la ventana *Proyectos* de `index.html`; cada una tiene su ilustración animada en SVG, que puedes reemplazar por una captura propia.
 - Idioma: el botón ES/EN del menú traduce todo el sitio. El HTML está en español y `i18n.js` guarda el diccionario al inglés; si agregas texto nuevo, añade su traducción ahí (lo que no aparece se queda igual). La elección se recuerda en el navegador.
 - Skills técnicas: tarjetas "raspa y gana" (canvas en `script.js`); habilidades blandas: cintas que se deslizan.
+- Hobbies con video o foto: en `assets/hobbies/` van `natacion.webm`/`.mp4` (12 s, sin audio) y `natacion.jpg` (póster). Para otro hobby, agrégale la clase `has-media` y un `<video class="hobby-media" muted loop playsinline preload="none" poster="…">` (o un `<img class="hobby-media">`) como primer hijo de su `<div class="hobby">`. El video solo se reproduce cuando está en pantalla.
 - Las animaciones respetan `prefers-reduced-motion`.
 
 ## Publicar en GitHub Pages
