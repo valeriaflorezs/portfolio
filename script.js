@@ -228,6 +228,23 @@
     hv.forEach(function (v) { vio.observe(v); });
   }
 
+  // Certificados en pila: se abre en abanico y cada hoja se ve completa en un visor.
+  var pile = document.querySelector(".pile"), lb = document.getElementById("cert-view");
+  if (pile && lb) {
+    var lbImg = lb.querySelector("img"), lbCap = lb.querySelector(".lb-cap"), touch = matchMedia("(hover: none)").matches;
+    $(".sheet", pile).forEach(function (sh) {
+      sh.addEventListener("click", function () {
+        if (touch && !pile.classList.contains("fan")) { pile.classList.add("fan"); return; }
+        var img = sh.querySelector("img");
+        lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt;
+        lbCap.textContent = sh.querySelector(".sheet-cap").textContent + " · " + sh.querySelector(".sheet-meta").textContent;
+        if (lb.showModal) lb.showModal(); else lb.setAttribute("open", "");
+      });
+    });
+    lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
+    lb.querySelector(".lb-close").addEventListener("click", function () { lb.close(); });
+  }
+
   if (reduce) return;
   root.classList.add("js");
 
