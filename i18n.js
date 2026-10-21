@@ -199,6 +199,7 @@
     "Inmersión en Liderazgo": "Leadership Immersion",
     "ProducTeam: Producción de eventos": "ProducTeam: Event production",
     "Valeria con su certificado de la Cátedra Barranquilla 2026": "Valeria with her Cátedra Barranquilla 2026 certificate",
+    "Ver credencial ↗": "View credential ↗",
     "Correo": "Email"
   };
   var EN_QUOTE = {
