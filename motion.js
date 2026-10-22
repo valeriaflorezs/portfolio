@@ -135,4 +135,15 @@
     if (dlg) new MutationObserver(function () { setTimeout(upd, 60); }).observe(dlg, { attributes: true, attributeFilter: ["open"] });
     upd();
   });
+
+  // Singularity: la línea de tiempo avanza rol por rol cada vez que se abre la carpeta.
+  $(".tline").forEach(function (tl) {
+    var dlg = tl.closest("dialog"), body = tl.closest(".win-body");
+    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting && dlg && dlg.open) tl.classList.add("go"); }, { root: body, threshold: .35 });
+    io.observe(tl);
+    if (dlg) {
+      dlg.addEventListener("close", function () { tl.classList.remove("go"); });
+      new MutationObserver(function () { if (dlg.open) { io.unobserve(tl); io.observe(tl); } }).observe(dlg, { attributes: true, attributeFilter: ["open"] });
+    }
+  });
 })();
