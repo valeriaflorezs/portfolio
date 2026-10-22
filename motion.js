@@ -127,6 +127,7 @@
     var upd = function () {
       var b = body.getBoundingClientRect(), r = list.getBoundingClientRect();
       var reach = clamp(b.top + b.height * .62 - r.top, 0, r.height);
+      if (body.scrollTop + body.clientHeight >= body.scrollHeight - 4) reach = r.height; // al final del scroll, todo encendido
       fill.style.transform = "scaleY(" + (reach / Math.max(1, r.height)).toFixed(4) + ")";
       items.forEach(function (li) { li.classList.toggle("lit", li.offsetTop + 10 <= reach + 1); });
     };
