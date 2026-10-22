@@ -163,7 +163,7 @@
       if (reduce) return;
       var t0 = performance.now();
       (function step(t) {
-        var k = Math.min(1, (t - t0) / 1100), e = 1 - Math.pow(1 - k, 3);
+        var k = Math.min(1, (t - t0) / 1400), e = 1 - Math.pow(1 - k, 4);
         el.textContent = fmt(Math.round(to * e)) + (k === 1 ? suf : "");
         if (k < 1) requestAnimationFrame(step);
       })(t0);

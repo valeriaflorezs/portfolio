@@ -11,7 +11,8 @@ Sitio estático (HTML + CSS + JS, sin build) que combina portafolio y "Linktree"
 - Idioma: el botón ES/EN del menú traduce todo el sitio. El HTML está en español y `i18n.js` guarda el diccionario al inglés; si agregas texto nuevo, añade su traducción ahí (lo que no aparece se queda igual). La elección se recuerda en el navegador.
 - Skills técnicas: tarjetas "raspa y gana" (canvas en `script.js`); habilidades blandas: cintas que se deslizan.
 - Hobbies con video o foto: en `assets/hobbies/` van `natacion.webm`/`.mp4` (28 s, sin audio) y `natacion.jpg` (póster). Para otro hobby, agrégale la clase `has-media` y un `<video class="hobby-media" muted loop playsinline preload="none" poster="…">` (o un `<img class="hobby-media">`) como primer hijo de su `<div class="hobby">`. El video solo se reproduce cuando está en pantalla.
-- Las animaciones respetan `prefers-reduced-motion`.
+- Las animaciones respetan `prefers-reduced-motion` (con movimiento reducido `motion.js` no se activa).
+- `motion.js` aporta el movimiento al estilo de dataconale.com: scroll suave con [Lenis](https://github.com/darkroomengineering/lenis) (MIT, copia local en `assets/lenis.min.js`), títulos con máscara, píldora deslizante en el menú, tarjeta colgante con péndulo y Logros fijado en pantallas anchas.
 
 ## Publicar en GitHub Pages
 Settings → Pages → Deploy from a branch → `main` / root. El sitio queda en `https://valeriaflorezs.github.io/portfolio/`.
