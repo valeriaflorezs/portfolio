@@ -116,4 +116,23 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
     sync();
   }
+
+  // Línea de tiempo vertical (Biosteel): la línea se dibuja con el scroll y cada hito se enciende al alcanzarlo.
+  $(".vtl").forEach(function (list) {
+    var body = list.closest(".win-body"), dlg = list.closest("dialog");
+    if (!body) return;
+    var fill = document.createElement("span"); fill.className = "vtl-fill"; fill.setAttribute("aria-hidden", "true");
+    list.insertBefore(fill, list.firstChild); list.classList.add("vtl-js");
+    var items = $(":scope > li", list);
+    var upd = function () {
+      var b = body.getBoundingClientRect(), r = list.getBoundingClientRect();
+      var reach = clamp(b.top + b.height * .62 - r.top, 0, r.height);
+      fill.style.transform = "scaleY(" + (reach / Math.max(1, r.height)).toFixed(4) + ")";
+      items.forEach(function (li) { li.classList.toggle("lit", li.offsetTop + 10 <= reach + 1); });
+    };
+    body.addEventListener("scroll", upd, { passive: true });
+    addEventListener("resize", upd);
+    if (dlg) new MutationObserver(function () { setTimeout(upd, 60); }).observe(dlg, { attributes: true, attributeFilter: ["open"] });
+    upd();
+  });
 })();
