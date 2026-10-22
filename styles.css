@@ -952,3 +952,27 @@ html.lenis, html.lenis body { height: auto; }
   .js .tline.go .tl-clock { transform: none; transition: transform .7s cubic-bezier(.3,1.5,.5,1); transition-delay: calc(var(--n) * .7s + .55s); }
   .js .tline.go .tl-card { opacity: 1; transform: none; transition: opacity .8s var(--ease), transform .9s var(--ease), box-shadow .3s; transition-delay: calc(var(--n) * .7s + .45s); }
 }
+
+/* Vistas previas reales (notebooks, apps y sitios) dentro de una ventana de navegador */
+.shot { order: 2; position: relative; display: block; align-self: center; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--bg); box-shadow: 0 18px 44px rgba(45,35,91,.2); transition: transform .8s var(--ease), box-shadow .8s var(--ease); }
+.shot:hover, .shot:focus-visible { transform: translateY(-6px); box-shadow: 0 28px 60px rgba(45,35,91,.3); }
+.shot-bar { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px; border-bottom: 1px solid var(--line); background: var(--soft); }
+.shot-bar i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--violet); opacity: .55; }
+.shot-bar i:nth-child(2) { opacity: .35; } .shot-bar i:nth-child(3) { opacity: .2; }
+.shot-url { flex: 1; min-width: 0; margin-left: 8px; padding: 4px 10px; border-radius: 999px; background: var(--bg); color: var(--muted); font-size: 10.5px; text-transform: none; letter-spacing: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
+.shot-view { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; container-type: size; background: #fff; }
+.shot-view img { display: block; width: 100%; height: auto; transition: transform 1.2s var(--ease); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .shot:hover .shot-view img, .shot:focus-visible .shot-view img { transform: translateY(calc(-100% + 100cqh)); transition: transform 9s cubic-bezier(.45,.05,.35,1); }
+}
+.proj-acc .shot { order: 2; }
+@media (max-width: 899px) { .proj-acc .shot { order: 0; } }
+
+/* credenciales de Anthropic: los dos certificados reales, apilados */
+.cert-pair { position: relative; align-self: stretch; min-height: 260px; display: block; }
+.cert-pair .cp { position: absolute; width: 62%; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 16px 38px rgba(45,35,91,.28); transition: transform .8s var(--ease), box-shadow .6s var(--ease), z-index 0s .2s; }
+.cert-pair .cp img { display: block; width: 100%; height: auto; }
+.cert-pair .cp-b { right: 0; top: 0; transform: rotate(4deg); }
+.cert-pair .cp-a { left: 0; bottom: 0; transform: rotate(-4deg); z-index: 1; }
+.cert-pair .cp:hover, .cert-pair .cp:focus-visible { z-index: 2; transform: rotate(0) translateY(-8px) scale(1.04); box-shadow: 0 26px 56px rgba(45,35,91,.4); transition-delay: 0s; }
+@media (max-width: 760px) { .cert-pair { min-height: 300px; } }
