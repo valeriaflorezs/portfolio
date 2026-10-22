@@ -139,6 +139,14 @@
     items.forEach(function (it) {
       var h = it.querySelector(".acc-head");
       if (h) h.addEventListener("click", function () { if (!it.classList.contains("open")) open(it); });
+      // Con mouse basta pasar por encima (sin hacer clic); un pequeño retardo evita parpadeos al cruzar paneles.
+      var t = 0;
+      it.addEventListener("mouseenter", function () {
+        if (!matchMedia("(hover: hover) and (min-width: 900px)").matches || it.classList.contains("open")) return;
+        clearTimeout(t); t = setTimeout(function () { open(it); }, 90);
+      });
+      it.addEventListener("mouseleave", function () { clearTimeout(t); });
+      it.addEventListener("focusin", function (e) { if (e.target.matches && e.target.matches(":focus-visible") && !it.classList.contains("open")) open(it); });
     });
     open(items[0]);
   });

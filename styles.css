@@ -916,3 +916,27 @@ html.lenis, html.lenis body { height: auto; }
   #logros.pinned .nums { overflow: hidden; scroll-snap-type: none; cursor: default; }
   #logros.pinned .nums-btn { display: none; }
 }
+
+/* Línea de tiempo vertical que se dibuja al hacer scroll (Biosteel) */
+.vtl { --yc: 150px; --sx: calc(var(--yc) + 22px); position: relative; display: block; margin-top: 8px; }
+.vtl > li { display: grid; grid-template-columns: var(--yc) 44px minmax(0, 1fr); padding: 0 0 clamp(26px, 4vh, 40px); border: 0; border-radius: 0; background: none; overflow: visible; box-shadow: none; }
+.vtl > li:hover { border: 0; }
+.vtl > li::before { content: ""; grid-column: 2; grid-row: 1; justify-self: center; margin-top: 6px; width: 13px; height: 13px; border-radius: 50%; background: var(--bg); box-shadow: inset 0 0 0 1px var(--muted); position: relative; z-index: 1; }
+.vtl > li > .mono { grid-column: 1; grid-row: 1; text-align: right; padding-top: 2px; line-height: 1.5; }
+.vtl > li > :not(.mono) { grid-column: 3; }
+.vtl::before { content: ""; position: absolute; top: 8px; bottom: 8px; left: var(--sx); width: 1px; background: var(--line); }
+.vtl-fill { position: absolute; top: 8px; bottom: 8px; left: var(--sx); width: 2px; margin-left: -.5px; background: var(--accent); transform: scaleY(0); transform-origin: 50% 0; z-index: 0; will-change: transform; }
+.vtl > li > h3 { margin-top: 0; font-size: clamp(20px, 1.6vw + 6px, 28px); letter-spacing: -.03em; }
+.vtl.vtl-js > li > :not(.mono) { transition: color .7s var(--ease), opacity .7s var(--ease), transform .8s var(--ease); }
+.vtl.vtl-js > li:not(.lit) > :not(.mono) { opacity: .45; transform: translateX(-6px); }
+.vtl.vtl-js > li:not(.lit) > .mono { opacity: .55; }
+.vtl > li > .mono { transition: opacity .7s var(--ease); }
+.vtl > li::before { transition: background-color .5s var(--ease), box-shadow .5s var(--ease), transform .6s var(--ease); }
+.vtl.vtl-js > li.lit::before { background: var(--accent); box-shadow: 0 0 0 5px rgba(128,115,195,.22); transform: scale(1.1); }
+@media (max-width: 759px) {
+  .vtl { --sx: 6px; }
+  .vtl > li { grid-template-columns: 28px minmax(0, 1fr); }
+  .vtl > li::before { grid-column: 1; justify-self: start; }
+  .vtl > li > .mono { grid-column: 2; text-align: left; margin-bottom: 8px; }
+  .vtl > li > :not(.mono) { grid-column: 2; }
+}
